@@ -1,8 +1,64 @@
-# React + Vite
+React Sneakers — Онлайн-магазин кроссовок
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Небольшое и стильное React-приложение для покупки кроссовок.
+Проект создан на React + Vite с использованием SCSS, React Router, Axios и мокового API.
 
-Currently, two official plugins are available:
+Стек технологий
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React
+
+Vite
+
+React Router
+
+Axios
+
+CSS/SCSS (модульные стили)
+
+Mock API (mokky.dev)
+
+Функционал
+
+Добавление товаров в корзину
+
+Добавление в избранное
+
+Поиск товаров
+
+Оформление заказа
+
+Просмотр истории заказов
+
+Деплой на GitHub Pages
+
+Сохранение данных на mock API
+
+
+Быстрый старт
+1. Установка зависимостей
+npm install
+
+2. Запуск проекта в режиме разработки
+npm run dev
+
+3. Сборка проекта
+npm run build
+
+4. Деплой на GitHub Pages
+
+Проект автоматически собирается в папку /docs,
+после пуша в ветку main GitHub Pages обновит сайт.
+
+Демо-версия
+
+Структура проекта
+
+src/
+  components/
+  pages/
+  context/
+  assets/
+  App.jsx
+  main.jsx
+index.scss
+vite.config.js
