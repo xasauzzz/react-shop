@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router} from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "macro-css";
@@ -7,8 +7,8 @@ import "./index.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Router>
+    <HashRouter>
       <App />
-    </Router>
+    </HashRouter>
   </React.StrictMode>
 );

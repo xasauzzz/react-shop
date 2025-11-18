@@ -1,7 +1,7 @@
 import React from "react";
 import AppContext from "../context";
 import Card from "../components/Card";
-import Info from "../components/Info"; // Убедитесь, что компонент существует и импортирован
+import Info from "../components/Info";
 
 function Favorites() {
   const { favorites, onAddToFavorite } = React.useContext(AppContext);
@@ -27,7 +27,7 @@ function Favorites() {
         <Info
           title="Закладок нет :("
           description="Вы ничего не добавляли в закладки"
-          image="/img/sad-fav.svg"
+          image="img/sad-fav.svg"   // ✔ исправлено!
         />
       )}
     </div>
@@ -35,4 +35,3 @@ function Favorites() {
 }
 
 export default Favorites;
-

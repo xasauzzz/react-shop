@@ -15,7 +15,8 @@ function Card({
 }) {
   const { isItemAdded } = React.useContext(AppContext);
   const [isFavorite, setIsFavorite] = React.useState(favorited);
-  const obj = { id, parentId: id, title, imageUrl, price }
+
+  const obj = { id, parentId: id, title, imageUrl, price };
 
   const onClickPlus = () => {
     onPlus(obj);
@@ -48,13 +49,17 @@ function Card({
           {onFavorite && (
             <div className={styles.favorite} onClick={onClickFavorite}>
               <img
-                src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"}
-                alt=""
+                src={isFavorite ? "img/liked.svg" : "img/unliked.svg"}
+                alt="favorite"
               />
             </div>
           )}
-          <img width={133} height={112} src={imageUrl} alt="" />
+
+          {/* Важно! imageUrl ТЕПЕРЬ должен быть БЕЗ слэша! */}
+          <img width={133} height={112} src={imageUrl} alt="Sneakers" />
+
           <h5>{title}</h5>
+
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">
               <span>Цена:</span>
@@ -65,8 +70,8 @@ function Card({
               <img
                 className={styles.plus}
                 onClick={onClickPlus}
-                src={isItemAdded(id) ? "/img/checked.svg" : "/img/plus.svg"}
-                alt=""
+                src={isItemAdded(id) ? "img/checked.svg" : "img/plus.svg"}
+                alt="Plus"
               />
             )}
           </div>

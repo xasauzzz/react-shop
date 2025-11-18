@@ -6,9 +6,9 @@ import styles from "./Drawer.module.scss"
 
 function Drawer({ onClose, onRemove, items = [], opened}) {
   const { cartItems, setCartItems } = React.useContext(AppContext)
-  const  [orderId, setOrderId] = React.useState(null)
-  const  [isOrderComplete, setIsOrderComplete] = React.useState(false)
-  const  [isLoading, setIsLoading] = React.useState(false)
+  const [orderId, setOrderId] = React.useState(null)
+  const [isOrderComplete, setIsOrderComplete] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
   const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum,0)
 
   const onClickOrder = async () => {
@@ -23,16 +23,17 @@ function Drawer({ onClose, onRemove, items = [], opened}) {
       setCartItems([]);
      
     } catch (error) {
-      alert('Ошибка при создание заказа :(')
+      alert('Ошибка при создании заказа :(')
     }
     setIsLoading(false)
   } 
+
   return (
     <>
       <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
         <div className={styles.drawer}>
           <h2 onClick={onClose} className="d-flex justify-between mb-30">
-            Корзина <img className="cu-p" src="/img/remove.svg" alt="" />
+            Корзина <img className="cu-p" src="img/remove.svg" alt="remove" />
           </h2>
 
           {items.length > 0 ? (
@@ -44,43 +45,51 @@ function Drawer({ onClose, onRemove, items = [], opened}) {
                       style={{ backgroundImage: `url(${obj.imageUrl})` }}
                       className="cartItemImg"
                     ></div>
+
                     <div className="mr-20 flex">
                       <p className="mb-5">{obj.title}</p>
                       <b>{obj.price} руб.</b>
                     </div>
+
                     <img
                       onClick={() => onRemove(obj.id)}
                       className="removeBtn"
-                      src="/img/remove.svg"
-                      alt=""
+                      src="img/remove.svg"
+                      alt="remove"
                     />
                   </div>
                 ))}
               </div>
+
               <div className="cartTotalBlock">
                 <ul>
                   <li>
                     <span>Итого:</span>
                     <div></div>
-                    <b>{totalPrice} руб. </b>
+                    <b>{totalPrice} руб.</b>
                   </li>
                   <li>
                     <span>Налог 5%:</span>
                     <div></div>
-                    <b>{(totalPrice * 0.05).toFixed(2)} руб. </b>
+                    <b>{(totalPrice * 0.05).toFixed(2)} руб.</b>
                   </li>
                 </ul>
+
                 <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
-                  Оформить заказ <img src="/img/arrow.svg" alt="" />
+                  Оформить заказ <img src="img/arrow.svg" alt="arrow" />
                 </button>
               </div>
             </div>
           ) : (
             <Info 
-            title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
-            description={isOrderComplete ? `Ваш заказ №${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
-            image={isOrderComplete ? "/img/order-complete.svg" : "/img/cart-empty.svg"}/>
-
+              title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
+              description={
+                isOrderComplete
+                  ? `Ваш заказ №${orderId} скоро будет передан курьерской доставке`
+                  : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
+              }
+              image={isOrderComplete ? "img/order-complete.svg" : "img/cart-empty.svg"}
+            />
           )}
         </div>
       </div>
