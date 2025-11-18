@@ -30,7 +30,17 @@ function App() {
 
         setCartItems(cartResponse.data);
         setFavorites(favoritesResponse.data);
-        setItems(itemsResponse.data);
+
+        // ✅ Исправляем пути картинок здесь
+        setItems(
+          itemsResponse.data.map(item => ({
+            ...item,
+            imageUrl: item.imageUrl.startsWith("/img")
+              ? item.imageUrl.slice(1) // убираем первый слэш
+              : item.imageUrl
+          }))
+        );
+
       } catch (error) {
         alert("Error on request data :(");
       }
@@ -57,15 +67,17 @@ function App() {
           "https://1fde4466c256dae2.mokky.dev/cart",
           obj
         );
-        setCartItems((prev) => prev.map((item) => {
-          if (item.parentId === data.parentId) {
-            return{
-              ...item,
-              id: data.id
+        setCartItems((prev) =>
+          prev.map((item) => {
+            if (item.parentId === data.parentId) {
+              return {
+                ...item,
+                id: data.id,
+              };
             }
-          }
-          return item
-        }));
+            return item;
+          })
+        );
       }
     } catch (error) {
       alert("Error on add to cart");
